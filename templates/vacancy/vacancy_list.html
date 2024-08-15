@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Вакансии {% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/vacancy.css' %}">
+{% endblock style %}
+
+{% block content %}
+<div class="container">
+    <h1>Vacancy List</h1>
+    <ul class="vacancy-list">
+        {% for vac in vacancy %}
+            <li>
+                <h2><a href="{% url 'vacancy_detail' pk=vac.pk %}">{{ vac.name }}</a></h2>
+                <p><strong>Company:</strong> {{ vac.company_name }}</p>
+                <p><strong>Salary:</strong> {{ vac.salary }}</p>
+                <p><strong>Skill:</strong> {{ vac.skills }}</p>
+                <p><strong>Duties:</strong> {{ vac.duties }}</p>
+                <p><strong>Address:</strong> {{ vac.address }}</p>
+            </li>
+        {% empty %}
+            <li>No vacancies found.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'index' %}" class="back-link">Назад</a>
+</div>
+{% endblock content %}
+

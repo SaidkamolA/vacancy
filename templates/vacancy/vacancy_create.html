@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/vacancy.css' %}">
+{% endblock style %}
+
+{% block title %} Create {% endblock title %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <h1>Create Vacancy</h1>
+    {{ form.as_p }}
+
+    <input type="submit" value="Create">
+</form>
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Главная страница {% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/vacancy.css' %}">
+{% endblock style %}
+
+{% block content %}
+<div>
+    <h1>Здравствуйте {{ request.user.username }} </h1>
+</div>
+
+<div class="top-nav">
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}" class="top-nav-link">Выйти</a>
+    {% else %}
+    <a href="{% url 'login' %}" class="top-nav-link">Войти</a>
+    <a href="{% url 'register' %}" class="top-nav-link">Регистрация</a>
+    {% endif %}
+</div>
+
+<nav>
+    <ul>
+        <li><a href="{% url 'vacancy_view' %}">Просмотр вакансий</a></li>
+        <li><a href="{% url 'rezume_create' %}">Создать резюме</a></li>
+        {% if user.is_authenticated and user.role.name_en == 'admin' %}
+        <li><a href="{% url 'rezume_view' %}">Просмотр резюме</a></li>
+        <li><a href="{% url 'vacancy_create' %}">Создать вакансию</a></li>
+        <li><a href="{% url 'admin_user_list' %}">Управление пользователями</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+{% endblock content %}

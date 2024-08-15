@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/rezum.css' %}">
+{% endblock style %}
+
+{% block title %} Resumes List {% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h1>Resumes List</h1>
+    <ul class="resumes-list">
+        {% for resume in rezume %}
+            <li>
+                <h2>{{ resume.surname }} {{ resume.name }}</h2>
+                <p><strong>Vacancy:</strong> {{ resume.vacancy }}</p>
+                <p><strong>Date of Birth:</strong> {{ resume.date_of_birth }}</p>
+                <p><strong>Email:</strong> {{ resume.email }}</p>
+                <p><strong>Skills:</strong> {{ resume.skills }}</p>
+                <p><strong>Professional Experience:</strong> {{ resume.pro_experience }}</p>
+                <p><strong>Education:</strong> {{ resume.education }}</p>
+                {% if user.is_authenticated and user.role.name_en == 'user' %}
+                    <a href="{% url 'rezume_update' pk=resume.pk %}" class="edit-link">Edit Resume</a>
+                    <a href="{% url 'rezume_delete' pk=resume.pk %}" class="delete-link">Delete Resume</a>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>No resumes found.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'index' %}" class="back-link">Back</a>
+</div>
+{% endblock content %}
+

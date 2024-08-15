@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Create Resume {% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/rezum.css' %}">
+{% endblock style %}
+
+{% block content %}
+<div class="container">
+    <h1 class="rezume-form-title">Create Resume</h1>
+    <form action="" method="post" class="rezume-form">
+        {% csrf_token %}
+        <div>
+            <label for="id_surname">Surname:</label>
+            {{ form.surname }}
+            {{ form.surname.errors }}
+        </div>
+        <div>
+            <label for="id_name">Name:</label>
+            {{ form.name }}
+            {{ form.name.errors }}
+        </div>
+        <div>
+            <label for="id_vacancy">Vacancy:</label>
+            {{ form.vacancy }}
+            {{ form.vacancy.errors }}
+        </div>
+        <div>
+            <label for="id_date_of_birth">Date of Birth:</label>
+            {{ form.date_of_birth }}
+            {{ form.date_of_birth.errors }}
+        </div>
+        <div>
+            <label for="id_email">Email:</label>
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
+        <div>
+            <label for="id_skills">Skills:</label>
+            {{ form.skills }}
+            {{ form.skills.errors }}
+        </div>
+        <div>
+            <label for="id_pro_experience">Professional Experience:</label>
+            {{ form.pro_experience }}
+            {{ form.pro_experience.errors }}
+        </div>
+        <div>
+            <label for="id_education">Education:</label>
+            {{ form.education }}
+            {{ form.education.errors }}
+        </div>
+        <input type="submit" value="Create">
+    </form>
+</div>
+{% endblock content %}

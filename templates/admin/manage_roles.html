@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Manage Roles{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    <style>
+        /* Добавьте стили по необходимости */
+    </style>
+{% endblock style %}
+
+{% block content %}
+    <h1>Manage User Roles</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Date of Birth</th>
+                <th>Role</th>
+                <th>Is Admin</th>
+            </tr>
+        </thead>
+        <tbody>
+            <form method="post">
+                {% csrf_token %}
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.date_of_birth }}</td>
+                    <td>
+                        {% if user.role %}
+                            {{ user.role.name }}
+                        {% else %}
+                            No role assigned
+                        {% endif %}
+                    </td>
+                    <td>
+                        <input type="checkbox" name="is_admin" value="true" {% if user.is_admin %}checked{% endif %}>
+                    </td>
+                    <input type="hidden" name="user_id" value="{{ user.id }}">
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="4"><button type="submit">Save Changes</button></td>
+                </tr>
+            </form>
+        </tbody>
+    </table>
+{% endblock content %}

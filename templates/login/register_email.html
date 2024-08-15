@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подтверждение регистрации</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        p {
+            color: #666666;
+            line-height: 1.6;
+        }
+        .signature {
+            margin-top: 20px;
+            font-style: italic;
+            text-align: right;
+            color: #999999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Подтверждение регистрации</h2>
+        <p>Привет, {{ username }},</p>
+        <p>Спасибо за регистрацию на нашем сайте.</p>
+        <p>С наилучшими пожеланиями,</p>
+        <p class="signature">Команда нашего сайта 'Saidkamol'</p>
+    </div>
+</body>
+</html>

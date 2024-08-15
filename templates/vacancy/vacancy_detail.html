@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/vacancy.css' %}">
+{% endblock style %}
+
+{% block title %} Вакансии {% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ vacancy_detail.name }}</h1>
+    <p><strong>Company:</strong> {{ vacancy_detail.company_name }}</p>
+    <p><strong>Salary:</strong> {{ vacancy_detail.salary }}</p>
+    <p><strong>Skill:</strong> {{ vacancy_detail.skills }}</p>
+    <p><strong>Duties:</strong> {{ vacancy_detail.duties }}</p>
+    <p><strong>Address:</strong> {{ vacancy_detail.address }}</p>
+
+    {% if user.is_authenticated and user.role.name_en == 'admin' %}
+    <a href="{% url 'vacancy_update' pk=vacancy_detail.pk %}" class="edit-link">Изменить вакансию</a> <br>
+    <a href="{% url 'vacancy_delete' pk=vacancy_detail.pk %}" class="delete-link">Удалить вакансию</a>
+    {% endif %}
+</div>
+
+<a href="{% url 'index' %}" class="back-btn">Назад</a>
+{% endblock content %}
